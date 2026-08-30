@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.ListaProduto"
+             Title="Lista de Produtos">
+    <VerticalStackLayout Spacing="10" Padding="20">
+        <Label Text="Sua Lista de Compras"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <SearchBar x:Name="txtBusca"
+                   Placeholder="Buscar produto..."
+                   SearchButtonPressed="OnSearchButtonPressed" />
+
+        <CollectionView x:Name="listaProdutos">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Editar"
+                                           BackgroundColor="Orange"
+                                           Invoked="OnEditarClicked" />
+                                <SwipeItem Text="Excluir"
+                                           BackgroundColor="Red"
+                                           Invoked="OnExcluirClicked" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Descricao}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Quantidade}" FontSize="14" />
+                                <Label Text="{Binding Preco}" FontSize="14" TextColor="Green" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button x:Name="btnNovo"
+                Text="Novo Produto"
+                Clicked="OnNovoProdutoClicked"
+                BackgroundColor="DarkBlue"
+                TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
