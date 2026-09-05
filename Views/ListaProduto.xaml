@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.ListaProduto"
+             Title="Lista de Produtos">
+    <StackLayout>
+        <SearchBar x:Name="txtBusca"
+                   Placeholder="Digite para buscar..."
+                   TextChanged="OnSearchTextChanged" />
+
+        <ListView x:Name="listaProdutos"
+                  HasUnevenRows="True"
+                  ItemSelected="OnProdutoSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Excluir"
+                                      IsDestructive="True"
+                                      CommandParameter="{Binding .}"
+                                      Clicked="OnExcluirClicked" />
+                        </ViewCell.ContextActions>
+                        <StackLayout Padding="15, 12" Spacing="3">
+                            <Label Text="{Binding Descricao}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Quantidade, StringFormat='Quantidade: {0}'}" />
+                            <Label Text="{Binding Preco, StringFormat='Preco: R$ {0:F2}'}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Novo Produto"
+                Clicked="OnNovoProdutoClicked" />
+    </StackLayout>
+</ContentPage>
